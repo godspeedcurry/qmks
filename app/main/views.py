@@ -7,6 +7,7 @@ from ..models import Marks_record, User, Question
 from .. import db
 from functools import wraps
 import sys
+import random
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -16,6 +17,7 @@ def admin_required(func):
     @wraps(func)
     def admin(*args, **kwargs):
         per = User.query.filter_by(username=session.get('name')).first()
+
         if per.permission == 0:
             return func(*args, **kwargs)
         else:
@@ -47,8 +49,8 @@ def login():
 @main.route('/record/int:<page>', methods=['GET', 'POST'])
 @login_required
 def record(page):
-    A = User.query.filter_by(username=session.get('name')).first() # 从数据库中过滤出当前用户名的这一行
-    a = A.list.split(' ')    # 取出他的list并分片
+    A = User.query.filter_by(username=session.get('name')).first()  # 从数据库中过滤出当前用户名的这一行
+    a = A.list.split(',')  # 取出他的list并分片
     if A.done == 1:
         return redirect(url_for('main.mark'))
     form = Answer()
@@ -89,7 +91,7 @@ def mark():
     b = A.list
     a = b.split(' ')
     for i in range(1, 11):
-        results = Marks_record.query.filter_by(username=session.get('name'), Q_ID=i).order_by(Marks_record.id.desc()).\
+        results = Marks_record.query.filter_by(username=session.get('name'), Q_ID=i).order_by(Marks_record.id.desc()). \
             first()
         if results is None:
             flash(u'你还有题目没有回答,跳转至未回答页')
@@ -109,9 +111,11 @@ def before():
 
 
 @main.route('/register', methods=['GET', 'POST'])
-@admin_required
 def register():
     register_key = 'magic key'
+    list1 = ['9', '3', '7', '1', '8', '4', '10', '6', '2', '5']
+    random_list = random.sample(list1, 10)
+    content = ",".join(random_list)
     form = RegistrationForm()
     if form.validate_on_submit():
         if form.register_key.data != register_key:
@@ -119,10 +123,10 @@ def register():
             return redirect(url_for('main.register'))
         else:
             if form.password.data != form.password2.data:
-                flash(u'两次输入密码不一')
+                flash(u'两次输入密码不一致')
                 return redirect(url_for('main.register'))
             else:
-                user = User(username=form.username.data, password=form.password.data)
+                user = User(username=form.username.data, permission=1, password=form.password.data, list=content, done=0)
                 db.session.add(user)
                 flash(u'您已经注册成功')
                 return redirect(url_for('main.login'))
