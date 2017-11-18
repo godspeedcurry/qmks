@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+<div class="container">
+    <div class="act">
+        <h2 style="text-align: center">欢迎参加17-18E志者精品课程期中考试</h2>
+    </div>
+    <div>
+
+        <hr>
+        {% if current_user.is_authenticated %}
+        <h4 style="text-align: center">您已经登入,请按下方按钮进入考试界面</h4>
+        <br>
+        <div style="text-align: center">
+
+        <a type="button" class="btn btn-info btn-large" href="{{ url_for('main.before') }}">考试</a>
+            </div>
+        {% else %}
+        <div class="jumbotron" style="text-align: center">
+            <h1 style="text-align: center">Get Ready!</h1>
+            <p class="lead" style="text-align: center">你还没有登录，请点击下方按钮登录</p>
+            <p style="text-align: center"><a class="btn btn-lg btn-success" role="button" href="{{ url_for('main.login') }}">点我登录</a>
+            </p>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+
+
+{% endblock %}

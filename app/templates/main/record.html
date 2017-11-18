@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{%  block page_content%}
+<div>
+
+
+
+<div>
+<h2>{{page}}. {{ result.Stem }}</h2>
+    <hr>
+    <h3>A. {{ result.Select_1 }}</h3>
+    <h3>B. {{ result.Select_2 }}</h3>
+    <h3>C. {{ result.Select_3 }}</h3>
+    <h3>D. {{ result.Select_4 }}</h3>
+</div>
+    <br>
+{{ wtf.quick_form(form) }}
+</div>
+    <div style="text-align: center">
+    <ul class="pagination">
+        {% if page!=1 %}
+	    <li><a href="{{ url_for('main.record',page=page-1) }}">&laquo;上一题</a></li>
+        {% endif %}
+	    <li><a href="{{ url_for('main.record',page=1) }}">1</a></li>
+        <li><a href="{{ url_for('main.record',page=2) }}">2</a></li>
+        <li><a href="{{ url_for('main.record',page=3) }}">3</a></li>
+        <li><a href="{{ url_for('main.record',page=4) }}">4</a></li>
+        <li><a href="{{ url_for('main.record',page=5) }}">5</a></li>
+        <li><a href="{{ url_for('main.record',page=6) }}">6</a></li>
+        <li><a href="{{ url_for('main.record',page=7) }}">7</a></li>
+        <li><a href="{{ url_for('main.record',page=8) }}">8</a></li>
+        <li><a href="{{ url_for('main.record',page=9) }}">9</a></li>
+        <li><a href="{{ url_for('main.record',page=10) }}">10</a></li>
+            {% if page!=10 %}
+	   <li><a href="{{ url_for('main.record',page=page+1) }}">下一题&raquo;</a></li>
+        {% endif %}
+</ul>
+    </div>
+<hr>
+<div style="text-align: center;margin-bottom: 50px;margin-top: 30px">
+     <a type="button" class="btn btn-info" href="{{ url_for('main.mark') }}">全部做完，确认提交</a>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+
+    <table class="table">
+	<caption>成绩导出页面</caption>
+   <thead>
+      <tr>
+
+          <th>学号</th>
+          <th>分数</th>
+      </tr>
+   </thead>
+   <tbody>
+{% for key, value in dict1.iteritems() %}
+    <tr>
+        <td>{{ key|e }}</td>
+        <td>{{ value|e }}</td>
+    </tr>
+
+{% endfor %}
+
+
+   </tbody>
+</table>
+    <div class="col-md-6">
+    </div>
+
+{% endblock %}
