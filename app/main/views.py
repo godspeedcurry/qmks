@@ -119,7 +119,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         if form.register_key.data != register_key:
-            flash(u'注册码不符，请返回重试')
+            flash(u'注册码一点都不符合，请返回重试')
             return redirect(url_for('main.register'))
         else:
             if form.password.data != form.password2.data:
@@ -140,17 +140,18 @@ def out():
     username = []
     dict1 = {}
     name = User.query.all()
-    marks = 0
     count = len(username)
     for name in name:
         username.append(name.username)  # 将username的值存进username这个list中
     for name in username:
+        marks = 0
         for i in range(1, 11):
             results = Marks_record.query.filter_by(username=name, Q_ID=i).order_by(Marks_record.id.asc()).first()
             if results is None:
                 marks = 0
                 break
             else:
+
                 if results.mark == '1':
                     marks += 10
         dict1[name] = marks
