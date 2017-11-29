@@ -33,7 +33,7 @@ class Marks_record(db.Model):
     __tablename__ = 'marks_record'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(64))
-    time = db.Column(db.DATETIME, default=datetime.utcnow())
+    time = db.Column(db.DATETIME, default=datetime.utcnow)
     Q_ID = db.Column(db.Integer)
     Select = db.Column(db.String(64))
     mark = db.Column(db.String(64))

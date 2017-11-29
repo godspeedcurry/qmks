@@ -2,7 +2,9 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-
+<div>
+    <h2>已经答题的人数：{{have_done}}</h2></div>
+    <div><h2>未答题的人数：{{not_done}}</h2></div>
     <table class="table">
 	<caption>成绩导出页面</caption>
    <thead>

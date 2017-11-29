@@ -8,6 +8,7 @@ from .. import db
 from functools import wraps
 import sys
 import random
+from datetime import datetime
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -69,7 +70,7 @@ def record(page):
             a = 3
         else:
             a = 4
-        record = Marks_record(username=session.get('name'), Q_ID=page, Select=form.answer.data,
+        record = Marks_record(username=session.get('name'), Q_ID=page, time=datetime.utcnow(), Select=form.answer.data,
                               mark=(a == result.Select_Right))
         dd = Marks_record.query.filter_by(username=session.get('name'), Q_ID=page).first()
         if dd is None:
@@ -126,7 +127,8 @@ def register():
                 flash(u'两次输入密码不一致')
                 return redirect(url_for('main.register'))
             else:
-                user = User(username=form.username.data, permission=1, password=form.password.data, list=content, done=0)
+                user = User(username=form.username.data, permission=1, password=form.password.data, list=content,
+                            done=0)
                 db.session.add(user)
                 flash(u'您已经注册成功')
                 return redirect(url_for('main.login'))
@@ -139,6 +141,8 @@ def register():
 def out():
     username = []
     dict1 = {}
+    count1 = 0
+    count2 = 0
     name = User.query.all()
     count = len(username)
     for name in name:
@@ -154,9 +158,13 @@ def out():
 
                 if results.mark == '1':
                     marks += 10
+        if marks > 0:
+            count1 += 1
+        if marks == 0:
+            count2 += 1
         dict1[name] = marks
 
-    return render_template('main/out.html', username=username, len=count, dict1=dict1)
+    return render_template('main/out.html', username=username, len=count, dict1=dict1, have_done=count1, not_done=count2)
 
 
 @main.route('/logout')
