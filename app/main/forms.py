@@ -34,3 +34,9 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, field):
         if User.query.filter_by(username=field.data).first():
             raise ValidationError(u'该账号已被使用')
+
+
+class QueryForm(FlaskForm):
+    submit = SubmitField(u'查询成绩')
+    student_number = StringField(u'你的学号',  validators=[DataRequired(), length(1,64)],
+                                 render_kw={"placeholder": '请输入完整的学号'})

@@ -32,7 +32,17 @@
         <li><a href="{{ url_for('main.record',page=8) }}">8</a></li>
         <li><a href="{{ url_for('main.record',page=9) }}">9</a></li>
         <li><a href="{{ url_for('main.record',page=10) }}">10</a></li>
-            {% if page!=10 %}
+        <li><a href="{{ url_for('main.record',page=11) }}">11</a></li>
+        <li><a href="{{ url_for('main.record',page=12) }}">12</a></li>
+        <li><a href="{{ url_for('main.record',page=13) }}">13</a></li>
+        <li><a href="{{ url_for('main.record',page=14) }}">14</a></li>
+        <li><a href="{{ url_for('main.record',page=15) }}">15</a></li>
+        <li><a href="{{ url_for('main.record',page=16) }}">16</a></li>
+        <li><a href="{{ url_for('main.record',page=17) }}">17</a></li>
+        <li><a href="{{ url_for('main.record',page=18) }}">18</a></li>
+        <li><a href="{{ url_for('main.record',page=19) }}">19</a></li>
+        <li><a href="{{ url_for('main.record',page=20) }}">20</a></li>
+            {% if page!=20 %}
 	   <li><a href="{{ url_for('main.record',page=page+1) }}">下一题&raquo;</a></li>
         {% endif %}
 </ul>

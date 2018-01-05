@@ -2,13 +2,17 @@
 {% import "bootstrap/wtf.html" as wtf %}
 
 {% block page_content %}
-    <div class="col-md-6">
-        <h1 style="text-align: center">小e计算出您的分数是:{{ mark }}</h1>
+
+
     <div style="text-align: center">
+        <h1 style="text-align: center">小e计算出您的分数是:{{ mark }}</h1>
         <a type="button" class="btn btn-info" href="{{ url_for('main.index') }}">返回首页</a>
-        <a type="button" class="btn btn-info" href="https://www.wjx.cn/jq/18077316.aspx">期中调查问卷</a>
+
+
     </div>
-    </div>
-    <div class="col-md-6">
-    </div>
+<div class="bs-callout bs-callout-info" id="callout-helper-context-color-specificity">
+    <h4>写在结尾</h4>
+    <p>感谢秋冬学期您对我们精品课程的支持，我们也十分珍惜您宝贵的建议，后续会开放留言板，让大家帮助我们更好的开设精品课程，关于课程考核会在群里发布</p>
+    <p>新年快乐，大吉大利！</p>
+  </div>
 {% endblock %}
