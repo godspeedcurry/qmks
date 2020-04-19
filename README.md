@@ -44,9 +44,9 @@
 
 * `config.py`: 配置文件,保存了这个系统的CSRF的安全秘钥,防止跨站请求,也保存了数据库连接的地址,在这个系统中连接到本地的数据库是使用
 
- `SQLALCHEMY_DATABASE_URI = 'mysql://root:340221zyc@localhost/exam'`
+ `SQLALCHEMY_DATABASE_URI = 'mysql://root:test@localhost/exam'`
 
- 语句,代表连接到MySQL数据库,用户名为root,密码为340221zyc,地址为localhost,数据库名为exam`
+ 语句,代表连接到MySQL数据库,用户名为root,密码为test,地址为localhost,数据库名为exam`
 
 * `manage.py` :设定配置方式和管理程序的总开关.
 
