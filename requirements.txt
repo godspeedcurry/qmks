@@ -16,7 +16,7 @@ Jinja2==2.9.5
 Mako==1.0.6
 MarkupSafe==0.23
 mysql==0.0.1
-paramiko==1.16.0
+paramiko==2.0.9
 pexpect==4.0.1
 ptyprocess==0.5
 pycrypto==2.6.1
